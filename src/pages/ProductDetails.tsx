@@ -4,6 +4,8 @@ import { Product } from "../types/products.ts";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchProductById } from "../services/productService.ts";
+import { AddToCartButton } from "../components/AddToCartButton.tsx";
+import { useAuth } from "../context/AuthContext.tsx";
 
 
 
@@ -13,6 +15,7 @@ export const ProductDetails = () => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { user } = useAuth();
 
     useEffect(() => {
         const loadProduct = async () => {
@@ -66,8 +69,10 @@ export const ProductDetails = () => {
                         <p>{product.description}</p>
                     </div>
 
-                    <button className="add-to-cart">Add to
-                        Cart</button>
+                    {user ?
+                        <AddToCartButton productId={product.id} /> :
+                        <div />
+                    }
                 </div>
             </div>
         </div>
