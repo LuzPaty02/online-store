@@ -3,7 +3,7 @@ import { RatingStars } from '../components/RatingStars';
 import { Product } from "../types/products.ts";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchProductById } from "../services/api.ts";
+import { fetchProductById } from "../services/productService.ts";
 
 
 

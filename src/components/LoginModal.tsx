@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { signInWithGoogle, signInWithEmail, registerWithEmail } from '../services/api';
-import '../styles.css';
+import { signInWithGoogle, signInWithEmail, registerWithEmail } from
+    '../services/authenticationService';
 
 export const LoginModal = ({ onClose }: { onClose: () => void }) => {
     const [email, setEmail] = useState('');
