@@ -8,8 +8,13 @@ import { initializeProducts } from "./services/productService.ts";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { AdminProvider } from "./context/AdminContext.tsx";
 import { ProductProvider } from "./context/ProductContext.tsx";
+import { PayPalScriptProvider, ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 
-await initializeProducts();
+const initialOptions = {
+    "client-id": "",
+    currency: "USD",
+    intent: "capture",
+};
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
@@ -18,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 <OrderProvider>
                     <AdminProvider>
                         <CartProvider>
-                            <App />
+                            <PayPalScriptProvider options={initialOptions as unknown as ReactPayPalScriptOptions}>
+                                <App />
+                            </PayPalScriptProvider>
                         </CartProvider>
                     </AdminProvider>
                 </OrderProvider>
